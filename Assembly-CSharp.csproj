@@ -51,23 +51,38 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
+     <Compile Include="Assets\Scripts\Guns\Mine.cs" />
+     <Compile Include="Assets\Scripts\Guns\Explosion.cs" />
      <Compile Include="Assets\Scripts\MazeSawner.cs" />
+     <Compile Include="Assets\Scripts\Box.cs" />
+     <Compile Include="Assets\Scripts\AmmoSpawner.cs" />
      <Compile Include="Assets\Scripts\MazeGenerator.cs" />
      <Compile Include="Assets\Scripts\Camera.cs" />
      <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
      <Compile Include="Assets\Scripts\WavesController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Guns\RPGWarhead.cs" />
+     <Compile Include="Assets\Scripts\ParticlesCleaner.cs" />
      <Compile Include="Assets\Scripts\Floor.cs" />
+     <Compile Include="Assets\Scripts\Guns\GunText.cs" />
+     <Compile Include="Assets\Scripts\HPBar.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
+     <Compile Include="Assets\Scripts\Guns\ExplosionEffect.cs" />
      <Compile Include="Assets\Scripts\EnemySpawner.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
+     <Compile Include="Assets\Scripts\Guns\TrajectoryRenderer.cs" />
      <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
      <Compile Include="Assets\Scripts\Cell.cs" />
-     <Compile Include="Assets\Scripts\Gun.cs" />
+     <Compile Include="Assets\Scripts\Guns\Gun.cs" />
+     <Compile Include="Assets\Scripts\Guns\Granade.cs" />
      <Compile Include="Assets\Scripts\EnemyMoving.cs" />
-     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Guns\WarheadSmoke.cs" />
+     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
+     <Compile Include="Assets\Scripts\EnemyBig.cs" />
+     <Compile Include="Assets\Scripts\FireBall.cs" />
+     <None Include="Assets\Graphics\Blur.shader" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>R:/GAMES/Cool name/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

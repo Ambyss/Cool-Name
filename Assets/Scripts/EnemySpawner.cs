@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private GameObject[] _enemy;
+    private int _randomNumber;
 
     public void SpawnEnemies(int numberOfEnemies)
     {
         for (int i = 0; i < numberOfEnemies; i++)
         {
-            Instantiate(_enemy, transform.position, Quaternion.identity);
+            if (Random.Range(9, 12) == 10)
+                Instantiate(_enemy[1], transform.position, Quaternion.identity);
+            else
+                Instantiate(_enemy[0], transform.position, Quaternion.identity);
         }
     }
 }

@@ -12,11 +12,18 @@ public class PlayerController : MonoBehaviour
     private float _tempAngle;
     private float _currentAngle;
     private int _angle;
+    private float _hp;
+    private float _maxHp;
+    public GameObject HPLine;
+    private float _hpScale;
 
     private void Start()
     {
+        _maxHp = 100;
+        _hp = _maxHp;
         _rigidbody = GetComponent<Rigidbody>();
         _speed = 8f;
+        _hpScale = HPLine.transform.localScale.x;
     }
 
     private void FixedUpdate()
@@ -34,5 +41,22 @@ public class PlayerController : MonoBehaviour
             _angle = (int) _tempAngle;
             transform.rotation = Quaternion.Euler(0, Mathf.LerpAngle(_currentAngle, _angle, .5f), 0);
         }
+        if (_hp < 100)
+        {
+            _hp += .05f;
+            HPLine.transform.localScale = new Vector3(_hp/_maxHp * _hpScale, HPLine.transform.localScale.y);
+        }
+    }
+
+    public void Damage(int hp)
+    {
+        _hp -= hp;
+        if (_hp <= 0)
+        {
+            print("Death!");
+            Destroy(gameObject);
+            Time.timeScale = 0;
+        }
+        HPLine.transform.localScale = new Vector3(_hp/_maxHp * _hpScale, HPLine.transform.localScale.y);
     }
 }

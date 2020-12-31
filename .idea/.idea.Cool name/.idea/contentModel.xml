@@ -7,6 +7,9 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Graphics" t="Include">
+          <e p="Blur.shader" t="Include" />
+        </e>
         <e p="Joystick Pack" t="Include">
           <e p="Examples" t="Include">
             <e p="JoystickPlayerExample.cs" t="Include" />
@@ -49,15 +52,31 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AmmoSpawner.cs" t="Include" />
+          <e p="Box.cs" t="Include" />
           <e p="Camera.cs" t="Include" />
           <e p="Cell.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
+          <e p="EnemyBig.cs" t="Include" />
           <e p="EnemyMoving.cs" t="Include" />
           <e p="EnemySpawner.cs" t="Include" />
+          <e p="FireBall.cs" t="Include" />
           <e p="Floor.cs" t="Include" />
-          <e p="Gun.cs" t="Include" />
+          <e p="Guns" t="Include">
+            <e p="Explosion.cs" t="Include" />
+            <e p="ExplosionEffect.cs" t="Include" />
+            <e p="Granade.cs" t="Include" />
+            <e p="Gun.cs" t="Include" />
+            <e p="GunText.cs" t="Include" />
+            <e p="Mine.cs" t="Include" />
+            <e p="RPGWarhead.cs" t="Include" />
+            <e p="TrajectoryRenderer.cs" t="Include" />
+            <e p="WarheadSmoke.cs" t="Include" />
+          </e>
+          <e p="HPBar.cs" t="Include" />
           <e p="MazeGenerator.cs" t="Include" />
           <e p="MazeSawner.cs" t="Include" />
+          <e p="ParticlesCleaner.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="WavesController.cs" t="Include" />
         </e>

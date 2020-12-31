@@ -8,8 +8,8 @@ public class MazeSawner : MonoBehaviour
     public GameObject cellPrefab;
     [SerializeField] private GameObject _spawner;
     public int koef = 8;
-    
-    private void Start()
+
+    private void Awake()
     {
         Spawn();
         GameObject.Find("WavesController").GetComponent<WavesController>().InitSpawn();
@@ -20,6 +20,8 @@ public class MazeSawner : MonoBehaviour
         MazeGenerator generator = new MazeGenerator();
         MazeGeneratorCell[,] maze = generator.GenerateMaze();
         
+        GameObject.Find("WavesController").GetComponent<WavesController>().InitCollider(maze.GetLength(0), maze.GetLength(1), koef);
+
         for (int i = 0; i < maze.GetLength(0); i++)
         {
             for (int j = 0; j < maze.GetLength(1); j++)
@@ -50,5 +52,10 @@ public class MazeSawner : MonoBehaviour
             }
         }
     }
- 
+
+    public Vector2 GetMazeHV()
+    {
+        return new Vector2();
+    }
+    
 }
