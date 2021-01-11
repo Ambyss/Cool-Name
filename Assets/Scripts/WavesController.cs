@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class WavesController : MonoBehaviour
 {
@@ -15,33 +16,40 @@ public class WavesController : MonoBehaviour
     private IEnumerator _exitRoutine;
     private PlayerController _player;
     private int _comboWave;
+    private int _comboWaveMax;
     private float _comboPercent;
-    [SerializeField] private Text _comboPercentText;
-    [SerializeField] private Text _comboWaveText;
     private int _score;
     private Text[] _scoreNumbers = new Text[8];
     private bool _isPaused;
     public Canvas PauseCanvas;
     public Canvas GameCanvas;
-
+    public Canvas DeathCanvas;
+    private ComboVizualizer _comboVizualizer;
+    public Gun Gun;
+    public GameObject NewGunText;
+    private bool _isTextFade;
+    private Color _fadeColor;
+    public Text NewWaveText;
 
     private void Awake()
     {
         _collider = GetComponent<BoxCollider>();
+        _currentWave = 1;
     }
 
     private void Start()
     {
+        NewGunText.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        _fadeColor = new Color(0, 0, 0, -0.02f);
+        _isTextFade = false;
+        Time.timeScale = 1;
         PauseCanvas.enabled = false;
         _isPaused = false;
-        _currentWave = 1;
         exitText.enabled = false;
         _exitRoutine = ExitFromLab();
         _player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _comboWave = 1;
         _comboPercent = 0f;
-        _comboPercentText.text = _comboPercent.ToString();
-        _comboWaveText.text = _comboWave.ToString();
         _score = 0;
         GameObject tempScoreLine = GameObject.Find("ScoreLine");
         for (int i = _scoreNumbers.Length - 1, k = 0; i >= 0; i--)
@@ -50,16 +58,19 @@ public class WavesController : MonoBehaviour
             k++;
         }
         UpdateScore();
+        _comboWaveMax = _comboWave;
+        _comboVizualizer = GetComponent<ComboVizualizer>();
     }
 
     private void FixedUpdate()
     {
-        _comboPercent -= _comboWave * 0.1f;
+        if (Input.GetKeyDown(KeyCode.Space))
+            _comboPercent += 90;
+        _comboPercent -= _comboWave * 0.05f;
         if (_comboPercent > 100)
         {
             _comboWave++;
             _comboPercent = _comboPercent - 100;
-            _comboWaveText.text = _comboWave.ToString();
         }
         else if (_comboPercent < 0)
         {
@@ -71,10 +82,43 @@ public class WavesController : MonoBehaviour
             {
                 _comboWave--;
                 _comboPercent = 100;
-                _comboWaveText.text = _comboWave.ToString();
             }
         }
-        _comboPercentText.text = ((int)_comboPercent).ToString();
+        if (_comboWave > _comboWaveMax)
+            _comboWaveMax = _comboWave;
+        _comboVizualizer.UpdateCombo(_comboPercent, _comboWave);
+        
+        // Open Guns
+        if (_comboWave >= 20)
+        {
+            Gun.OpenGun(6);
+        }
+        else if (_comboWave >= 16)
+        {
+            Gun.OpenGun(5);
+        }
+        else if (_comboWave >= 12)
+        {
+            Gun.OpenGun(4);
+        }
+        else if (_comboWave >= 8)
+        {
+            Gun.OpenGun(3);
+        }
+        else if (_comboWave >= 5)
+        {
+            Gun.OpenGun(2);
+        }
+        else if (_comboWave >= 3)
+        {
+            Gun.OpenGun(1);
+        }
+        
+        // New Gun Text
+        if (_isTextFade)
+        {
+            NewGunText.GetComponent<Image>().color += _fadeColor;
+        }
     }
     
     private void OnTriggerExit(Collider collider)
@@ -121,10 +165,10 @@ public class WavesController : MonoBehaviour
     
     public void SpawnEnemies()
     {
-        int randomnum = 1; // TODO: Calculate num of enemies    
+        int randomnum = _currentWave * _currentWave + _currentWave * Random.Range(0, 4);
         for (int i = 0; i < _spawners.Length; i++)
         {
-            _spawners[i].GetComponent<EnemySpawner>().SpawnEnemies(randomnum); // TODO: Random Number
+            _spawners[i].GetComponent<EnemySpawner>().SpawnEnemies(randomnum);
             InitNumOfEnemies(randomnum);
         }
     }
@@ -173,5 +217,27 @@ public class WavesController : MonoBehaviour
             PauseCanvas.enabled = true;
         }
         _isPaused = !_isPaused;
+    }
+
+    public void Death()
+    {
+        DeathCanvas.GetComponent<DeathCanvas>().Death(_score, _comboWaveMax);
+        Time.timeScale = 0;
+        // TODO: Save stats
+    }
+
+    public void NewGun()
+    {
+        NewGunText.GetComponent<Image>().color = Color.white;
+        print(NewGunText.GetComponent<Image>().color);
+        StartCoroutine(NewGunAppear());
+    }
+
+    IEnumerator NewGunAppear()
+    {
+        _isTextFade = true;
+        yield return new WaitForSeconds(2);
+        NewGunText.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        _isTextFade = false;
     }
 }

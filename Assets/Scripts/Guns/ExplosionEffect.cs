@@ -7,6 +7,7 @@ public class ExplosionEffect : MonoBehaviour
     void Start()
     {
         StartCoroutine(Death());
+        UnityEngine.Camera.main.GetComponent<Animator>().SetTrigger("shake");
     }
 
     IEnumerator Death()

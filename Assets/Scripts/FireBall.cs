@@ -22,12 +22,12 @@ public class FireBall : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        print(collider.tag);
         if (collider.CompareTag("Player"))
         {
             _player.GetComponent<PlayerController>().Damage(35);
+            Destroy(gameObject);
         }
-        else if (!collider.CompareTag("Enemy") && !collider.CompareTag("GameController"))
+        else if (collider.CompareTag("Wall"))
             Destroy(gameObject);
     }
 }

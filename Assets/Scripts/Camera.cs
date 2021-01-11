@@ -7,7 +7,12 @@ public class Camera : MonoBehaviour
 {
     public Transform target;
 
-    private void Update()
+    void Awake()
+    {
+        transform.position = new Vector3(target.position.x, 10, -.577f * transform.position.y + target.position.z);
+    }
+
+private void Update()
     {
         transform.position = new Vector3(target.position.x, 10, -.577f * transform.position.y + target.position.z);
     }

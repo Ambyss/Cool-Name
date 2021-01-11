@@ -13,9 +13,12 @@ public class Enemy : MonoBehaviour
     private float _stopDistance;
     private PlayerController _player;
     private bool _isFight;
+    public ParticleSystem Death;
+    private Animator _animator;
 
     void Start()
     {
+        _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _hp = 5f;
         _agent = GetComponent<NavMeshAgent>();
@@ -31,6 +34,7 @@ public class Enemy : MonoBehaviour
         if (_hp <= 0)
         {
             GameObject.Find("WavesController").GetComponent<WavesController>().EnemyKilled();
+            Instantiate(Death, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         _dir = new Vector3(Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad),0,  Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad));
@@ -49,7 +53,6 @@ public class Enemy : MonoBehaviour
             point.y - transform.position.y);
         _agent.velocity = -_dir * puffPower;
     }
-        
     
     private void FixedUpdate()
     {
@@ -59,6 +62,7 @@ public class Enemy : MonoBehaviour
 
     private void FIght()
     {
+        _animator.SetTrigger("Fight");
         if (_isFight)
         {
             _player.Damage(7);

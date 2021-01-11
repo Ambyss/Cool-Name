@@ -10,52 +10,58 @@
         <e p="Graphics" t="Include">
           <e p="Blur.shader" t="Include" />
         </e>
-        <e p="Joystick Pack" t="Include">
-          <e p="Examples" t="Include">
-            <e p="JoystickPlayerExample.cs" t="Include" />
-            <e p="JoystickSetterExample.cs" t="Include" />
-          </e>
-          <e p="Scripts" t="Include">
-            <e p="Base" t="Include">
-              <e p="Joystick.cs" t="Include" />
+        <e p="packages" t="Include">
+          <e p="Joystick Pack" t="Include">
+            <e p="Examples" t="Include">
+              <e p="JoystickPlayerExample.cs" t="Include" />
+              <e p="JoystickSetterExample.cs" t="Include" />
             </e>
+            <e p="Scripts" t="Include">
+              <e p="Base" t="Include">
+                <e p="Joystick.cs" t="Include" />
+              </e>
+              <e p="Editor" t="Include">
+                <e p="DynamicJoystickEditor.cs" t="Include" />
+                <e p="FloatingJoystickEditor.cs" t="Include" />
+                <e p="JoystickEditor.cs" t="Include" />
+                <e p="VariableJoystickEditor.cs" t="Include" />
+              </e>
+              <e p="Joysticks" t="Include">
+                <e p="DynamicJoystick.cs" t="Include" />
+                <e p="FixedJoystick.cs" t="Include" />
+                <e p="FloatingJoystick.cs" t="Include" />
+                <e p="VariableJoystick.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="NavMeshComponents" t="Include">
             <e p="Editor" t="Include">
-              <e p="DynamicJoystickEditor.cs" t="Include" />
-              <e p="FloatingJoystickEditor.cs" t="Include" />
-              <e p="JoystickEditor.cs" t="Include" />
-              <e p="VariableJoystickEditor.cs" t="Include" />
+              <e p="NavMeshAssetManager.cs" t="Include" />
+              <e p="NavMeshComponentsGUIUtility.cs" t="Include" />
+              <e p="NavMeshLinkEditor.cs" t="Include" />
+              <e p="NavMeshModifierEditor.cs" t="Include" />
+              <e p="NavMeshModifierVolumeEditor.cs" t="Include" />
+              <e p="NavMeshSurfaceEditor.cs" t="Include" />
             </e>
-            <e p="Joysticks" t="Include">
-              <e p="DynamicJoystick.cs" t="Include" />
-              <e p="FixedJoystick.cs" t="Include" />
-              <e p="FloatingJoystick.cs" t="Include" />
-              <e p="VariableJoystick.cs" t="Include" />
+            <e p="Scripts" t="Include">
+              <e p="NavMeshLink.cs" t="Include" />
+              <e p="NavMeshModifier.cs" t="Include" />
+              <e p="NavMeshModifierVolume.cs" t="Include" />
+              <e p="NavMeshSurface.cs" t="Include" />
             </e>
           </e>
-        </e>
-        <e p="NavMeshComponents" t="Include">
-          <e p="Editor" t="Include">
-            <e p="NavMeshAssetManager.cs" t="Include" />
-            <e p="NavMeshComponentsEditor.asmdef" t="Include" />
-            <e p="NavMeshComponentsGUIUtility.cs" t="Include" />
-            <e p="NavMeshLinkEditor.cs" t="Include" />
-            <e p="NavMeshModifierEditor.cs" t="Include" />
-            <e p="NavMeshModifierVolumeEditor.cs" t="Include" />
-            <e p="NavMeshSurfaceEditor.cs" t="Include" />
-          </e>
-          <e p="Scripts" t="Include">
-            <e p="NavMeshComponents.asmdef" t="Include" />
-            <e p="NavMeshLink.cs" t="Include" />
-            <e p="NavMeshModifier.cs" t="Include" />
-            <e p="NavMeshModifierVolume.cs" t="Include" />
-            <e p="NavMeshSurface.cs" t="Include" />
+          <e p="PB_Spider" t="Include">
+            <e p="readme.txt" t="Include" />
           </e>
         </e>
         <e p="Scripts" t="Include">
           <e p="AmmoSpawner.cs" t="Include" />
+          <e p="AudioSystem.cs" t="Include" />
           <e p="Box.cs" t="Include" />
           <e p="Camera.cs" t="Include" />
           <e p="Cell.cs" t="Include" />
+          <e p="ComboVizualizer.cs" t="Include" />
+          <e p="DeathCanvas.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
           <e p="EnemyBig.cs" t="Include" />
           <e p="EnemyMoving.cs" t="Include" />

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,10 +13,20 @@ public class EnemyMoving : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _target = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        StartCoroutine(ChekcDestination());
     }
 
-    private void FixedUpdate()
+    IEnumerator ChekcDestination()
     {
-        _agent.destination = _target.position;
+        try
+        {
+            _agent.destination = _target.position;
+        }
+        catch (Exception e)
+        {
+            Destroy(this);
+        }
+        yield return new WaitForSeconds(.33f);
+        StartCoroutine(ChekcDestination());
     }
 }
