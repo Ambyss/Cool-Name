@@ -17,10 +17,12 @@ public class PlayerController : MonoBehaviour
     public GameObject HPLine;
     private float _hpScale;
     private WavesController _wavesController;
+    private Animator _animator;
 
     private void Start()
     {
-        _maxHp = 1000;
+        _animator = GetComponent<Animator>();
+        _maxHp = 100000;
         _hp = _maxHp;
         _rigidbody = GetComponent<Rigidbody>();
         _speed = 8f;
@@ -33,10 +35,16 @@ public class PlayerController : MonoBehaviour
         // Moving
         _input = new Vector3(_joystick.Horizontal, 0, _joystick.Vertical);
         if (_input.magnitude > .8f)
+        {
             _rigidbody.velocity = _speed * _input;
+            _animator.SetTrigger("Move");
+        }
         else
+        {
             _rigidbody.velocity = Vector3.zero;
-            _input = _input.normalized;
+            _animator.SetTrigger("Stay");
+        }
+        _input = _input.normalized;
         if (_input.magnitude != 0)
         {
             // Rotation

@@ -90,6 +90,12 @@ public class Gun : MonoBehaviour
         _isMinesPlaces = true;
     }
 
+    void FixedUpdate()
+    {
+        print(_gunController.gun[_gunController.currentGun].ammo);
+
+    }
+    
     private IEnumerator Firing()
     {
         while (true)
@@ -215,7 +221,8 @@ public class Gun : MonoBehaviour
         if (_player.forward.z < 0)
             angle = 360 - angle;
         Vector3 target = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad));
-        Instantiate(_RPGWarhead, transform.position, transform.rotation).GetComponent<Rigidbody>().AddForce(target * 1500);
+        Instantiate(_RPGWarhead, transform.position, Quaternion.LookRotation(target)).GetComponent<Rigidbody>().AddForce(target * 1500);
+        print(_gunController.gun[_gunController.currentGun].ammo);
         return _gunController.gun[_gunController.currentGun].fireRate;
     }
     

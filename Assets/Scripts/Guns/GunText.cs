@@ -9,7 +9,7 @@ public class GunText : MonoBehaviour
     private Color _colorTransition;
     private Color _trueColor;
     
-    void Start()
+    void Awake()
     {
         _text = GetComponent<TextMesh>();
         _coroutine = Hide();
@@ -19,6 +19,7 @@ public class GunText : MonoBehaviour
     
     public void ChangeGun(string name)
     {
+        print(name);
         _text.text = name;
         StopAllCoroutines();
         StartCoroutine(Hide());

@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - Clean
   - Audio
+  - PlayerToo
   layers:
   - Default
   - TransparentFX
