@@ -29,7 +29,10 @@ public class WavesController : MonoBehaviour
     public GameObject NewGunText;
     private bool _isTextFade;
     private Color _fadeColor;
-    public Text NewWaveText;
+    public GameObject NewWaveText;
+    private bool _isWaveFade;
+    private Color _fadeColorWave;
+
 
     private void Awake()
     {
@@ -41,6 +44,7 @@ public class WavesController : MonoBehaviour
     {
         NewGunText.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         _fadeColor = new Color(0, 0, 0, -0.02f);
+        _fadeColorWave = new Color(0, 0, 0, -0.02f);
         _isTextFade = false;
         Time.timeScale = 1;
         PauseCanvas.enabled = false;
@@ -60,6 +64,8 @@ public class WavesController : MonoBehaviour
         UpdateScore();
         _comboWaveMax = _comboWave;
         _comboVizualizer = GetComponent<ComboVizualizer>();
+        _isWaveFade = false;
+        NewWaveText.GetComponent<Image>().color = new Color(1, 1, 1, 0);
     }
 
     private void FixedUpdate()
@@ -119,6 +125,12 @@ public class WavesController : MonoBehaviour
         {
             NewGunText.GetComponent<Image>().color += _fadeColor;
         }
+        
+        // New Wave Text
+        if (_isWaveFade)
+        {
+            NewWaveText.GetComponent<Image>().color += _fadeColorWave;
+        }
     }
     
     private void OnTriggerExit(Collider collider)
@@ -177,6 +189,7 @@ public class WavesController : MonoBehaviour
     {
         _currentWave++;
         SpawnEnemies();
+        StartCoroutine(NewWaveAppear());
     }
 
     private void InitNumOfEnemies(int number)
@@ -239,5 +252,15 @@ public class WavesController : MonoBehaviour
         yield return new WaitForSeconds(2);
         NewGunText.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         _isTextFade = false;
+    }
+
+    IEnumerator NewWaveAppear()
+    {
+        NewWaveText.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        _isWaveFade = true;
+        yield return new WaitForSeconds(2);
+        _isWaveFade = false;
+        NewWaveText.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+
     }
 }

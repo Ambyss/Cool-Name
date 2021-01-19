@@ -874,7 +874,7 @@ GameObject:
   - component: {fileID: 1375784646001979689}
   m_Layer: 0
   m_Name: mesh
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1757,7 +1757,7 @@ GameObject:
   - component: {fileID: 1375784646007414891}
   m_Layer: 0
   m_Name: root
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1953,7 +1953,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2.7
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 800
@@ -1979,7 +1979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fireball: {fileID: 5617259058831465260, guid: 242309237b8a36242945054b78d24211,
     type: 3}
-  Death: {fileID: 8753734831300744229, guid: a65b024976915274f9c8a8f6e4d93e9e, type: 3}
+  Death: {fileID: 2394369640320433026, guid: 9c59a2d195237be43afbb8b99b31195f, type: 3}
 --- !u!54 &-2553964337755956852
 Rigidbody:
   m_ObjectHideFlags: 0

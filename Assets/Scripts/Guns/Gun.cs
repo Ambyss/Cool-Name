@@ -23,12 +23,12 @@ public class GunController
     public int currentGun = 0;
     public List<GunsBasis> gun = new List<GunsBasis>()
     {
-        new GunsBasis(){name = "Pistol", fireRate = 3, damage = .5f, ammo = 2, isOpen = true, puffPower = 2},
-        new GunsBasis(){name = "Uzi", fireRate = 20, damage = .2f, ammo = 100, isOpen = true, puffPower = .2f},
-        new GunsBasis(){name = "Shotgun", fireRate = 2, damage = 2f, ammo = 20, isOpen = true, puffPower = 5},
-        new GunsBasis(){name = "Auto", fireRate = 12, damage = .7f, ammo = 50, isOpen = true, puffPower = .5f},
-        new GunsBasis(){name = "RPG", fireRate = 2, damage = 5f, ammo = 10, isOpen = true, puffPower = 10f},
-        new GunsBasis(){name = "Granate", fireRate = 2, damage = 5f, ammo = 10, isOpen = true, puffPower = 10f},
+        new GunsBasis(){name = "Pistol", fireRate = 3, damage = .5f, ammo = 100, isOpen = true, puffPower = 2},
+        new GunsBasis(){name = "Uzi", fireRate = 20, damage = .2f, ammo = 150, isOpen = false, puffPower = .2f},
+        new GunsBasis(){name = "Shotgun", fireRate = 2, damage = 2f, ammo = 20, isOpen = false, puffPower = 5},
+        new GunsBasis(){name = "Auto", fireRate = 12, damage = .7f, ammo = 50, isOpen = false, puffPower = .5f},
+        new GunsBasis(){name = "RPG", fireRate = 2, damage = 5f, ammo = 10, isOpen = false, puffPower = 10f},
+        new GunsBasis(){name = "Granate", fireRate = 2, damage = 5f, ammo = 10, isOpen = false, puffPower = 10f},
         new GunsBasis(){name = "Mines", fireRate = 10, damage = 5f, ammo = 15, isOpen = true, puffPower = 10f},
     };
 
@@ -90,12 +90,6 @@ public class Gun : MonoBehaviour
         _isMinesPlaces = true;
     }
 
-    void FixedUpdate()
-    {
-        print(_gunController.gun[_gunController.currentGun].ammo);
-
-    }
-    
     private IEnumerator Firing()
     {
         while (true)
@@ -137,6 +131,7 @@ public class Gun : MonoBehaviour
             angle = 360 - angle;
         angle += Random.Range(-5f, 5f);
         Vector3 target = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad));
+        print(target);
         _ray = new Ray(transform.position, target);
         Physics.Raycast(_ray, out _raycastHit);
         _line.SetPosition(0, transform.position);
@@ -214,7 +209,6 @@ public class Gun : MonoBehaviour
     
     private float RPGShot()
     {
-        _gunController.gun[_gunController.currentGun].ammo--;
         _currentAmmoText.text = _gunController.gun[_gunController.currentGun].ammo.ToString();
         _audioSystem.PlayAudio(RPG);
         float angle = Mathf.Acos((_player.forward.x) / (_player.forward.magnitude)) * Mathf.Rad2Deg;
@@ -222,7 +216,6 @@ public class Gun : MonoBehaviour
             angle = 360 - angle;
         Vector3 target = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad));
         Instantiate(_RPGWarhead, transform.position, Quaternion.LookRotation(target)).GetComponent<Rigidbody>().AddForce(target * 1500);
-        print(_gunController.gun[_gunController.currentGun].ammo);
         return _gunController.gun[_gunController.currentGun].fireRate;
     }
     
@@ -267,7 +260,7 @@ public class Gun : MonoBehaviour
             else if (_gunController.gun[_gunController.currentGun].name == "Mines" && _gunController.gun[_gunController.currentGun].ammo > 0)
             {
                 _isMinesPlaces = false;
-                Instantiate(_mine, transform.position, Quaternion.identity);
+                Instantiate(_mine, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), Quaternion.identity);
                 _gunController.gun[_gunController.currentGun].ammo--;
                 _currentAmmoText.text = _gunController.gun[_gunController.currentGun].ammo.ToString();
             }
@@ -326,7 +319,7 @@ public class Gun : MonoBehaviour
 
     public void AddAmmo()
     {
-        _gunController.gun[0].ammo += 30;
+        _gunController.gun[0].ammo += 50;
         _gunController.gun[1].ammo += 100;
         _gunController.gun[2].ammo += 20;
         _gunController.gun[3].ammo += 50;

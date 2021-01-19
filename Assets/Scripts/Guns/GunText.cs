@@ -19,7 +19,6 @@ public class GunText : MonoBehaviour
     
     public void ChangeGun(string name)
     {
-        print(name);
         _text.text = name;
         StopAllCoroutines();
         StartCoroutine(Hide());
